@@ -8,7 +8,7 @@ WORKDIR /code
 COPY ./requirements.txt /code/requirements.txt
 
 # 
-RUN python3 -m pip install --no-cache-dir --user -r requirements.txt
+RUN pip install -r /code/requirements.txt
 
 # 
 COPY ./app /code/app
