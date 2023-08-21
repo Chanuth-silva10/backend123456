@@ -6,7 +6,6 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from app.api.api_v1.router import router
 from app.core.config import settings
 from app.models.user_model import User
-from app.models.voice_emo_model import VoiceEmo
 
 app = FastAPI(
     emotion_type=settings.PROJECT_NAME,
@@ -29,8 +28,7 @@ async def app_init():
     await init_beanie(
         database=db_client,
         document_models= [
-            User,
-            VoiceEmo
+            User
         ]
     )
     
