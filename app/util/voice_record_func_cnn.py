@@ -15,7 +15,7 @@ class VoiceRecordFuncCNN:
             "voice_recording.wav",
         )
 
-        PEFC.voice_recording(rec_sub_dir, duration=rec_duration)
+        # PEFC.voice_recording(rec_sub_dir, duration=rec_duration)
         return "Recording Successfully"
 
     def predict_emotion():

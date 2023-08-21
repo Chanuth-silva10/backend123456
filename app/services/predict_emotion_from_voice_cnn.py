@@ -2,7 +2,7 @@ import time
 import os
 import numpy as np
 
-import pyaudio
+# import pyaudio
 import wave
 import librosa
 from scipy.stats import zscore
@@ -44,50 +44,50 @@ class PredictEmotionFromVoiceCNN:
         
 
 
-    def voice_recording(self, filename, duration=5, sample_rate=16000, chunk=1024, channels=1):
+    # def voice_recording(self, filename, duration=5, sample_rate=16000, chunk=1024, channels=1):
 
         
-        p = pyaudio.PyAudio()
-        stream = p.open(format=pyaudio.paInt16,
-                        channels=channels,
-                        rate=sample_rate,
-                        input=True,
-                        frames_per_buffer=chunk)
+    #     # p = pyaudio.PyAudio()
+    #     # stream = p.open(format=pyaudio.paInt16,
+    #     #                 channels=channels,
+    #     #                 rate=sample_rate,
+    #     #                 input=True,
+    #     #                 frames_per_buffer=chunk)
 
         
-        frames = []
+    #     frames = []
 
         
-        print('* Start Recording *')
-        stream.start_stream()
-        start_time = time.time()
-        current_time = time.time()
+    #     print('* Start Recording *')
+    #     stream.start_stream()
+    #     start_time = time.time()
+    #     current_time = time.time()
 
        
-        while (current_time - start_time) < duration:
+    #     while (current_time - start_time) < duration:
 
             
-            data = stream.read(chunk)
+    #         data = stream.read(chunk)
 
             
-            frames.append(data)
+    #         frames.append(data)
 
             
-            current_time = time.time()
+    #         current_time = time.time()
 
         
-        stream.stop_stream()
-        stream.close()
-        p.terminate()
-        print('* End Recording * ')
+    #     stream.stop_stream()
+    #     stream.close()
+    #     p.terminate()
+    #     print('* End Recording * ')
 
         
-        wf = wave.open(filename, 'w')
-        wf.setnchannels(channels)
-        wf.setsampwidth(p.get_sample_size(pyaudio.paInt16))
-        wf.setframerate(sample_rate)
-        wf.writeframes(b''.join(frames))
-        wf.close()
+    #     wf = wave.open(filename, 'w')
+    #     wf.setnchannels(channels)
+    #     wf.setsampwidth(p.get_sample_size(pyaudio.paInt16))
+    #     wf.setframerate(sample_rate)
+    #     wf.writeframes(b''.join(frames))
+    #     wf.close()
 
 
     

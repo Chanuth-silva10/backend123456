@@ -35,9 +35,9 @@ async def retrieve(v_emotion_id: UUID, current_user: User = Depends(get_current_
     return await VoiceEmoService.retrieve_v_emotion(current_user, v_emotion_id)
 
 
-@voice_emo_router.post("/recording", summary="Voice Recording")
-def record_voice():
-    return VoiceRecordFuncCNN.record_audio()
+# @voice_emo_router.post("/recording", summary="Voice Recording")
+# def record_voice():
+#     return VoiceRecordFuncCNN.record_audio()
 
 
 @voice_emo_router.post("/predict_emotion", summary="Voice Recording")
