@@ -26,7 +26,7 @@ class UserService:
             return None
         if not verify_password(password=password, hashed_pass=user.hashed_password):
             return None
-        
+        print(user)
         return user
     
     @staticmethod
