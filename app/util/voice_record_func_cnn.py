@@ -20,22 +20,22 @@ class VoiceRecordFuncCNN:
 
     def predict_emotion():
         json_file_path = os.path.join(
-            "C:\\Users\\~Sada\\Music\\backend123456\\app\\util\\train_model",
+            settings.ROOT_DIR,"util","train_model",
             "CNN_model.json",
         )
 
         load_weight_path_for_new_model = os.path.join(
-            f"{settings.ROOT_DIR}\\util\\train_model",
+            settings.ROOT_DIR,"util","train_model",
             "best_model1_weights.h5",
         )
 
         scaler_path = os.path.join(
-            "C:\\Users\\~Sada\\Music\\backend123456\\app\\util\\train_model",
+            settings.ROOT_DIR,"util","train_model",
             "scaler2.pickle",
         )
 
         encoder_path = os.path.join(
-            "C:\\Users\\~Sada\\Music\\backend123456\\app\\util\\train_model",
+            settings.ROOT_DIR,"util","train_model",
             "encoder2.pickle",
         )
 
@@ -44,7 +44,7 @@ class VoiceRecordFuncCNN:
         )
 
         rec_sub_dir = os.path.join(
-            "C:\\Users\\~Sada\Music\\backend123456\\app\\util\\tmp",
+           settings.ROOT_DIR,"util","tmp",
             "voice_recording.wav",
         )
 
