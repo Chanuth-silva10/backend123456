@@ -23,11 +23,7 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
     userObj = {
         "username": user.username,
         "email": user.email,
-        "access_token": create_access_token(user.user_id),
-        "refresh_token": create_refresh_token(user.user_id),
-        "user_id":user.user_id,
     }
-    print(userObj)
     if not user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -35,6 +31,9 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
         )
 
     return {
+        "access_token": create_access_token(user.user_id),
+        "refresh_token": create_refresh_token(user.user_id),
+        "user_id":user.user_id,
         "user":userObj
     }
 
