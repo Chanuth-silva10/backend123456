@@ -19,14 +19,8 @@ auth_router = APIRouter()
 @auth_router.post('/login', summary="Create access and refresh tokens for user", response_model=TokenSchema)
 async def login(form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
     user = await UserService.authenticate(email=form_data.username, password=form_data.password)
-    print("***********************************", form_data)
-    userObj = {
-        "username": user.username,
-        "email": user.email,
-        "access_token": create_access_token(user.user_id),
-        "refresh_token": create_refresh_token(user.user_id),
-        "user_id":user.user_id,
-    }
+    print("***********************************", form_data.username, form_data.password)
+    
     if not user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -34,9 +28,9 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends()) -> Any:
         )
 
     return {
-        "user":userObj
+        "access_token": create_access_token(user.user_id),
+        "refresh_token": create_refresh_token(user.user_id),
     }
-
 
 @auth_router.post('/test-token', summary="Test if the access token is valid", response_model=UserOut)
 async def test_token(user: User = Depends(get_current_user)):
