@@ -1,6 +1,6 @@
 from typing import List
 from uuid import UUID
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, UploadFile, File
 from app.models.user_model import User
 from app.api.deps.user_deps import get_current_user
 from app.schemas.voice_emo_schema import EmotionOut, VoiceEmoCreate, VoiceEmoUpdate
@@ -41,5 +41,5 @@ async def retrieve(v_emotion_id: UUID, current_user: User = Depends(get_current_
 
 
 @voice_emo_router.post("/predict_emotion", summary="Voice Recording")
-def record_voice():
-    return VoiceRecordFuncCNN.predict_emotion()
+def record_voice(audio: UploadFile = File(...)):
+    return VoiceRecordFuncCNN.predict_emotion(audio.file)

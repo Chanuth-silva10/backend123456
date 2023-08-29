@@ -18,7 +18,7 @@ class VoiceRecordFuncCNN:
         # PEFC.voice_recording(rec_sub_dir, duration=rec_duration)
         return "Recording Successfully"
 
-    def predict_emotion():
+    def predict_emotion(audio):
         json_file_path = os.path.join(
             settings.ROOT_DIR,"util","train_model",
             "CNN_model.json",
@@ -43,12 +43,7 @@ class VoiceRecordFuncCNN:
             json_file_path, load_weight_path_for_new_model, scaler_path, encoder_path
         )
 
-        rec_sub_dir = os.path.join(
-           settings.ROOT_DIR,"util","tmp",
-            "voice_recording.wav",
-        )
-
-        emotion = PEFC.prediction(rec_sub_dir)
+        emotion = PEFC.prediction(audio)
         print(emotion)
 
 
