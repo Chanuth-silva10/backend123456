@@ -7,6 +7,9 @@ from app.schemas.voice_emo_schema import EmotionOut, VoiceEmoCreate, VoiceEmoUpd
 from app.services.voice_emo_service import VoiceEmoService
 from app.models.voice_emo_model import VoiceEmo
 from app.util.voice_record_func_cnn import VoiceRecordFuncCNN
+from app.config import settings
+
+import os
 
 
 voice_emo_router = APIRouter()
@@ -42,4 +45,7 @@ async def retrieve(v_emotion_id: UUID, current_user: User = Depends(get_current_
 
 @voice_emo_router.post("/predict_emotion", summary="Voice Recording")
 def record_voice(audio: UploadFile = File(...)):
-    return VoiceRecordFuncCNN.predict_emotion(audio.file)
+    file_path = os.path.join(settings.ROOT_DIR,"util","tmp", audio.filename)
+    with open(file_path, "wb") as f:
+        f.write(audio.file.read())
+    return VoiceRecordFuncCNN.predict_emotion(file_path)
