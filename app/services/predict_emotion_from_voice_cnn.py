@@ -119,7 +119,7 @@ class PredictEmotionFromVoiceCNN:
                      ))
         return result
     
-
+    
     def get_predict_feat(self, path):
         d, s_rate= librosa.load(path, duration=2.5, offset=0.5)
         res=self.extract_features(d)
